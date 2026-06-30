@@ -124,7 +124,6 @@ a { text-decoration: none; color: inherit; }
     font-size: 1rem;
     color: var(--primary);
     line-height: 1.1;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
@@ -565,15 +564,6 @@ a { text-decoration: none; color: inherit; }
 .contact-action h3 { color: var(--primary); font-size: 1.8rem; margin-bottom: 15px; }
 .contact-action p { color: var(--text-light); margin-bottom: 30px; }
 
-/* Footer */
-.footer { padding: 30px 0; border-top: 1px solid var(--border); }
-.footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.footer-logo { height: 30px; filter: grayscale(100%) opacity(0.5); }
-.footer p { color: var(--text-light); font-size: 0.9rem; }
 
 /* Мобільна плаваюча кнопка */
 .mobile-floating-cta {
@@ -620,7 +610,153 @@ a { text-decoration: none; color: inherit; }
     .contact-info { padding: 30px 20px; }
     .contact-info h2 { font-size: 2rem; }
     
-    .footer-inner { flex-direction: column; gap: 15px; text-align: center; }
+   
     
-    body { padding-bottom: 80px; }
+}
+
+/* --- Менший Футер --- */
+.footer { 
+    padding: 15px 0; /* Було 30px, зробили компактніше */
+    border-top: 1px solid var(--border); 
+}
+.footer-logo { height: 24px; filter: grayscale(100%) opacity(0.5); }
+.footer p { font-size: 0.85rem; margin: 0; }
+.footer-inner { align-items: center; }
+
+
+/* --- Кнопка бургер-меню (прихована на ПК) --- */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--primary);
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* --- Мобільне меню (Виїзна панель) --- */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav-inner {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100%;
+    background: var(--white);
+    padding: 40px 30px;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav-overlay.active .mobile-nav-inner {
+    right: 0;
+}
+
+.mobile-menu-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.mobile-nav-links a {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.mobile-nav-links a.m-phone {
+    margin-top: 20px;
+    color: var(--primary);
+    font-size: 1.1rem;
+    border-top: 1px dashed var(--border);
+    padding-top: 20px;
+}
+
+/* --- Адаптивність для планшетів --- */
+@media (max-width: 992px) {
+    .mobile-menu-btn { display: block; }
+}
+
+/* --- Адаптивність для телефонів (Оптимізація послуг) --- */
+@media (max-width: 768px) {
+    .footer-inner {
+        flex-direction: row; /* Залишаємо в один рядок на мобільному */
+        justify-content: space-between;
+		
+    }
+    
+    /* Таби: Робимо горизонтальний скрол для кнопок категорій */
+    .tabs-header {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+        gap: 5px;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .tabs-header::-webkit-scrollbar {
+        height: 3px;
+    }
+    .tabs-header::-webkit-scrollbar-thumb {
+        background-color: var(--border);
+        border-radius: 3px;
+    }
+    
+    .tab-btn {
+        flex: 0 0 auto; /* Забороняємо кнопкам стискатися */
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        scroll-snap-align: start;
+    }
+    
+    .tabs-content { 
+        padding: 15px 20px; 
+    }
+    
+    .price-item { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 8px; 
+        padding: 12px 0;
+		text-align: left;
+		width: 100%;
+    }
+    
+    .p-val {
+        align-self: flex-start;
+        font-size: 1.15rem;
+    }
 }
