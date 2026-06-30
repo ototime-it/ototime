@@ -6,17 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
 
     if (mobileBtn && mobileCloseBtn && mobileNavOverlay) {
-        // Відкриття/Закриття меню
         const toggleMenu = () => {
             mobileNavOverlay.classList.toggle('active');
-            // Блокуємо скрол фону, коли меню відкрите
             document.body.style.overflow = mobileNavOverlay.classList.contains('active') ? 'hidden' : '';
         };
 
         mobileBtn.addEventListener('click', toggleMenu);
         mobileCloseBtn.addEventListener('click', toggleMenu);
 
-        // Закриття меню при кліку на будь-яке посилання
+        // Надійне закриття мобільного меню при переході по якірних лінках
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileNavOverlay.classList.remove('active');
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Закриття меню при кліку на затемнений фон поза меню
         mobileNavOverlay.addEventListener('click', (e) => {
             if (e.target === mobileNavOverlay) {
                 mobileNavOverlay.classList.remove('active');
@@ -32,7 +29,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    // 1. Логіка перемикання Прайсу (Таби)
+	
+// --- Розумна поява мобільної плаваючої кнопки при скролі ---
+    const mobileFloatingCta = document.querySelector('.mobile-floating-cta');
+    const heroSection = document.querySelector('.hero');
+
+    if (mobileFloatingCta && heroSection) {
+        const toggleFloatingCta = () => {
+            // Отримуємо нижню координату секції Hero
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            
+            // Якщо верхній екран пройдено — показуємо кнопку, якщо повернулися наверх — ховаємо
+            if (heroBottom < 100) {
+                mobileFloatingCta.classList.add('is-visible');
+            } else {
+                mobileFloatingCta.classList.remove('is-visible');
+            }
+        };
+
+        // Перевіряємо при завантаженні та при кожному скролі
+        toggleFloatingCta();
+        window.addEventListener('scroll', toggleFloatingCta);
+    }
+	
+    // --- Логіка перемикання прайс-листа (Таби) ---
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
@@ -43,11 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             btn.classList.add('active');
             const tabId = btn.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('active');
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
         });
     });
 
-    // 2. Анімація появи елементів при скролі (робить сайт дорогим і плавним)
+    // --- Анімація плавного скролу та появи елементів ---
     const fadeElements = document.querySelectorAll('.fade-in');
 
     const elementInView = (el, dividend = 1) => {
@@ -64,28 +87,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (elementInView(el, 1.15)) {
                 displayScrollElement(el);
             }
-        })
-    }
+        });
+    };
     
-    // Запускаємо відразу для елементів на першому екрані
     handleScrollAnimation();
-    
-    // Вішаємо слухач на прокрутку
-    window.addEventListener('scroll', () => {
-        handleScrollAnimation();
-    });
-});
+    window.addEventListener('scroll', handleScrollAnimation);
 
-// Плавний скрол для навігаційного меню
-    document.querySelectorAll('.header-nav a[href^="#"]').forEach(anchor => {
+    // Плавний скрол для всіх навігаційних лінків
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            if (targetId === '#') return;
             
+            const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                // Віднімаємо 80px (висота шапки), щоб меню не перекривало заголовок секції
-                const headerOffset = 80;
+                e.preventDefault();
+                const headerOffset = 80; // Фіксована висота шапки сайту
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -96,3 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
