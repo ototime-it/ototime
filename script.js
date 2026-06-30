@@ -1,92 +1,66 @@
-// 1. Плавне прокручування для навігаційних посилань
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            // Закриваємо мобільне меню при кліку (якщо воно відкрите)
-            document.getElementById('nav-menu').classList.remove('active');
-            
-            // Враховуємо висоту фіксованого хедера (~80px)
-            const headerOffset = 80;
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Логіка перемикання Прайсу (Таби)
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-        }
-    });
-});
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
 
-// 2. Мобільне меню (Toggle)
-const navToggle = document.getElementById('nav-toggle');
-const navMenu = document.getElementById('nav-menu');
-
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
-
-// 3. Акордеон для секції FAQ
-const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-accordionHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-        const item = header.parentElement;
-        const isActive = item.classList.contains('active');
-        
-        // Закриваємо всі інші відкриті елементи (опціонально)
-        document.querySelectorAll('.accordion-item').forEach(el => {
-            el.classList.remove('active');
+            btn.classList.add('active');
+            const tabId = btn.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
         });
+    });
 
-        // Якщо клікнули не на активний - відкриваємо його
-        if (!isActive) {
-            item.classList.add('active');
-        }
+    // 2. Анімація появи елементів при скролі (робить сайт дорогим і плавним)
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
+    };
+
+    const displayScrollElement = (element) => {
+        element.classList.add('visible');
+    };
+
+    const handleScrollAnimation = () => {
+        fadeElements.forEach((el) => {
+            if (elementInView(el, 1.15)) {
+                displayScrollElement(el);
+            }
+        })
+    }
+    
+    // Запускаємо відразу для елементів на першому екрані
+    handleScrollAnimation();
+    
+    // Вішаємо слухач на прокрутку
+    window.addEventListener('scroll', () => {
+        handleScrollAnimation();
     });
 });
 
-// 4. Логіка модального вікна для запису (Booking)
-const modal = document.getElementById('booking-modal');
+// Плавний скрол для навігаційного меню
+    document.querySelectorAll('.header-nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Віднімаємо 80px (висота шапки), щоб меню не перекривало заголовок секції
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-function openModal() {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Блокуємо скрол сторінки
-}
-
-function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = ''; // Повертаємо скрол
-}
-
-function closeModalOnOutsideClick(event) {
-    if (event.target === modal) {
-        closeModal();
-    }
-}
-
-// 5. Обробка форми запису (симуляція відправки)
-document.getElementById('booking-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Запобігаємо перезавантаженню сторінки
-    
-    const btn = this.querySelector('button[type="submit"]');
-    const originalText = btn.textContent;
-    
-    // Анімація завантаження
-    btn.textContent = 'Відправка...';
-    btn.style.opacity = '0.7';
-
-    // Симуляція запиту на сервер
-    setTimeout(() => {
-        alert('Дякуємо! Ваша заявка успішно надіслана. Наш адміністратор зв\'яжеться з вами найближчим часом.');
-        closeModal();
-        this.reset(); // Очищаємо форму
-        btn.textContent = originalText;
-        btn.style.opacity = '1';
-    }, 1000);
-});
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
