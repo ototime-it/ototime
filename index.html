@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛОР-Центр «Здорове Дихання»</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Підключення іконок BoxIcons (як легка альтернатива Lucide для чистого HTML) -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <!-- Верхній банер -->
+    <div class="top-banner">
+        <span><i class='bx bx-map'></i> м. Київ, вул. М. Коцюбинського, 8А</span>
+        <span class="dot">•</span>
+        <span><i class='bx bx-time'></i> Прийом дорослих та дітей з 0 років</span>
+    </div>
+
+    <!-- Навігація -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class='bx bx-pulse'></i></div>
+                <div class="logo-text">
+                    <strong>ЛОР<span>Центр</span></strong>
+                    <small>Здорове Дихання</small>
+                </div>
+            </a>
+            
+            <nav class="nav" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#about" class="nav-link">Про клініку</a></li>
+                    <li><a href="#services" class="nav-link">Послуги</a></li>
+                    <li><a href="#doctors" class="nav-link">Наші лікарі</a></li>
+                    <li><a href="#faq" class="nav-link">Питання</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="header-phone">
+                    <small>Дзвоніть нам</small>
+                    <a href="tel:+380443334455">+38 (044) 333-44-55</a>
+                </div>
+                <button class="btn btn-primary" onclick="openModal()">Записатись онлайн</button>
+                <button class="nav-toggle" id="nav-toggle"><i class='bx bx-menu'></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Головний екран (Hero) -->
+        <section class="hero section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge">Сучасна клініка доказової отоларингології</span>
+                    <h1 class="hero-title">Вільне дихання та <span>чистий слух</span> для дорослих та дітей</h1>
+                    <p class="hero-description">
+                        Професійна діагностика під контролем 4K відеоендоскопа, лазерне та кріолікування без болю. Повертаємо комфорт життя за 1 візит.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-large" onclick="openModal()">Записатись на прийом</button>
+                        <a href="#services" class="btn btn-outline btn-large">Наші послуги</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+    <!-- Зображення лікаря в кабінеті -->
+    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800" 
+         alt="ЛОР лікар" class="hero-image-placeholder">
+</div>
+                    <div class="hero-image-placeholder">
+                        <i class='bx bx-plus-medical'></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Про клініку (About) -->
+        <section id="about" class="about section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <span class="badge">Чому обирають нас</span>
+                    <h2>Золоті стандарти отоларингології</h2>
+                </div>
+                <div class="grid features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class='bx bx-video'></i></div>
+                        <h3>Цифрова Відеоендоскопія 4K</h3>
+                        <p>Жодних оглядів «наосліп». Пацієнт бачить стан ЛОР-органів на екрані разом із лікарем.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class='bx bx-wind'></i></div>
+                        <h3>Лікування без проколів</h3>
+                        <p>Гайморити та фронтити лікуємо за допомогою м’яких та безболісних катетерних методик.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class='bx bxs-baby-carriage'></i></div>
+                        <h3>Дружні до дітей (0+)</h3>
+                        <p>Використовуються ультратонкі ендоскопи діаметром усього 2.7 мм, огляд в ігровій формі.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Послуги (Services) -->
+        <section id="services" class="services section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="badge">Послуги та ціни</span>
+                    <h2>Професійні послуги нашої клініки</h2>
+                </div>
+                <div class="grid services-grid">
+                    <!-- Послуга 1 -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <i class='bx bx-ear'></i>
+                            <span class="duration"><i class='bx bx-time-five'></i> 30 хв</span>
+                        </div>
+                        <h3>Консультація отоларинголога</h3>
+                        <p>Огляд слухового проходу, барабанної перетинки за допомогою цифрового відеоендоскопа.</p>
+                        <div class="service-footer">
+                            <div class="price">
+                                <small>Вартість</small>
+                                <strong>650 <span>грн</span></strong>
+                            </div>
+                            <button class="btn btn-outline-primary" onclick="openModal()">Записатись</button>
+                        </div>
+                    </div>
+                    <!-- Послуга 2 -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <i class='bx bx-water'></i>
+                            <span class="duration"><i class='bx bx-time-five'></i> 20 хв</span>
+                        </div>
+                        <h3>Промивання носа («Зозуля»)</h3>
+                        <p>Ефективна терапевтична процедура для санації навколоносових пазух при гаймориті.</p>
+                        <div class="service-footer">
+                            <div class="price">
+                                <small>Вартість</small>
+                                <strong>220 <span>грн</span></strong>
+                            </div>
+                            <button class="btn btn-outline-primary" onclick="openModal()">Записатись</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Питання (FAQ) -->
+        <section id="faq" class="faq section bg-light">
+            <div class="container faq-container">
+                <div class="section-header">
+                    <span class="badge">Часті запитання</span>
+                    <h2>Відповіді на ваші запитання</h2>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Чи обовʼязково робити прокол при гаймориті?
+                            <i class='bx bx-chevron-down'></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Ні! У нашій клініці у 95% випадків ми лікуємо гайморит консервативно без проколів методом переміщення рідин.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Що таке ендоскопія ЛОР-органів і чи боляче це?
+                            <i class='bx bx-chevron-down'></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Це золотий стандарт діагностики. Процедура абсолютно безболісна завдяки місцевій анестезії.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Підвал (Footer) -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo-text text-white">
+                    <strong>ЛОР<span class="text-primary">Центр</span></strong>
+                </div>
+                <p>Сучасна клініка доказової отоларингології для всієї родини.</p>
+            </div>
+            <div class="footer-contacts">
+                <h4>Контакти клініки</h4>
+                <ul>
+                    <li><i class='bx bx-map'></i> м. Київ, вул. М. Коцюбинського, 8А</li>
+                    <li><i class='bx bx-phone'></i> +38 (044) 333-44-55</li>
+                    <li><i class='bx bx-envelope'></i> info@lor-center.com.ua</li>
+                </ul>
+            </div>
+            <div class="footer-hours">
+                <h4>Режим роботи</h4>
+                <ul>
+                    <li><span>Пн-Пт:</span> 08:00 – 20:00</li>
+                    <li><span>Сб:</span> 09:00 – 17:00</li>
+                    <li><span>Нд:</span> 10:00 – 15:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 ЛОР-Центр «Здорове Дихання». Всі права захищені.</p>
+        </div>
+    </footer>
+
+    <!-- Модальне вікно запису -->
+    <div class="modal-overlay" id="booking-modal" onclick="closeModalOnOutsideClick(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Онлайн-запис на прийом</h3>
+                <button class="modal-close" onclick="closeModal()"><i class='bx bx-x'></i></button>
+            </div>
+            <form id="booking-form" class="modal-form">
+                <div class="form-group">
+                    <label>Ваше ПІБ</label>
+                    <input type="text" placeholder="Шевченко Ольга Іванівна" required>
+                </div>
+                <div class="form-group">
+                    <label>Номер телефону</label>
+                    <input type="tel" placeholder="+380 (97) 123-45-67" required>
+                </div>
+                <div class="form-group">
+                    <label>Послуга</label>
+                    <select required>
+                        <option value="">Оберіть послугу</option>
+                        <option value="1">Консультація отоларинголога</option>
+                        <option value="2">Промивання носа</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-full mt-3">Підтвердити запис</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
