@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <!-- Шапка -->
+   <!-- Шапка -->
     <header class="header">
         <div class="container header-inner">
             <!-- Логотип та Назва -->
@@ -21,21 +21,40 @@
                 <span class="logo-text">ЛОР-Центр<br>"OtoTime"</span>
             </a>
             
-            <!-- Навігаційне меню -->
+            <!-- Навігаційне меню (десктоп) -->
             <nav class="header-nav">
-                
+                <a href="#services">Послуги та ціни</a>
                 <a href="#doctors">Фахівці</a>
-				<a href="#services">Послуги та ціни</a>
                 <a href="#contacts">Контакти</a>
             </nav>
 
-            <!-- Контакти та Кнопка -->
+            <!-- Контакти та Кнопки -->
             <div class="header-contacts">
                 <a href="tel:+380751617118" class="phone-link"><i class="fa-solid fa-phone"></i> +38 075 161 71 18</a>
                 <a href="https://bookon.ua/s/ototime.prk" class="btn btn-accent btn-sm pulse-btn" target="_blank">Записатись</a>
+                
+                <!-- Бургер-кнопка для мобільного меню -->
+                <button class="mobile-menu-btn" aria-label="Відкрити меню">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
+	<!-- Мобільне виїзне меню -->
+    <div class="mobile-nav-overlay">
+        <div class="mobile-nav-inner">
+            <button class="mobile-menu-close" aria-label="Закрити меню">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <nav class="mobile-nav-links">
+                <a href="#services">Послуги та ціни</a>
+                <a href="#doctors">Фахівці</a>
+                <a href="#contacts">Контакти</a>
+                <a href="tel:+380751617118" class="m-phone"><i class="fa-solid fa-phone"></i> +38 075 161 71 18</a>
+            </nav>
+            <a href="https://bookon.ua/s/ototime.prk" class="btn btn-accent pulse-btn" target="_blank" style="margin-top: auto; text-align: center;">Записатись онлайн</a>
+        </div>
+    </div>
 
    <!-- Головний екран (Hero) -->
     <section class="hero">
@@ -64,6 +83,7 @@
                 </div>
             </div>
         </div>
+</section class="hero">
 
     <!-- Блок: Коли варто звернутися? (Зачіпляє болі клієнта) -->
     <section class="symptoms section bg-light">
@@ -264,7 +284,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-inner">
-                <img src="img/logo.png" alt="OtoTime" class="footer-logo">
+               <!--  <img src="img/logo.png" alt="OtoTime" class="footer-logo"> -->
                 <p>&copy; 2026 ЛОР-Центр "OtoTime". Всі права захищені.</p>
             </div>
         </div>
