@@ -1,5 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+    // --- Логіка Мобільного меню ---
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    const mobileCloseBtn = document.querySelector('.mobile-menu-close');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+    if (mobileBtn && mobileCloseBtn && mobileNavOverlay) {
+        // Відкриття/Закриття меню
+        const toggleMenu = () => {
+            mobileNavOverlay.classList.toggle('active');
+            // Блокуємо скрол фону, коли меню відкрите
+            document.body.style.overflow = mobileNavOverlay.classList.contains('active') ? 'hidden' : '';
+        };
+
+        mobileBtn.addEventListener('click', toggleMenu);
+        mobileCloseBtn.addEventListener('click', toggleMenu);
+
+        // Закриття меню при кліку на будь-яке посилання
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Закриття меню при кліку на затемнений фон поза меню
+        mobileNavOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileNavOverlay) {
+                mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
     // 1. Логіка перемикання Прайсу (Таби)
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
