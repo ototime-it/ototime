@@ -533,7 +533,7 @@ a {
 
 .tag {
     background-color: #22C55E;
-    color: var(--white);
+    color: #FFFFFF !important;
     font-size: 0.75rem;
     font-weight: 700;
     padding: 4px 10px;
@@ -636,6 +636,51 @@ a {
     color: var(--text-light);
     font-size: 1rem;
     margin-bottom: 30px;
+}
+
+/* ==========================================================================
+   СТИЛІ ДЛЯ СОЦІАЛЬНИХ МЕРЕЖ У БЛОЦІ КОНТАКТІВ
+   ========================================================================== */
+.c-socials-item {
+    align-items: center !important; /* Центруємо іконку share відносно кнопок */
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.15); /* Напівпрозорий білий круг */
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ефекти наведення для кожної соцмережі окремо */
+.social-link.instagram:hover {
+    background: #E1306C;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
+}
+
+.social-link.facebook:hover {
+    background: #1877F2;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
+}
+
+.social-link.tiktok:hover {
+    background: #000000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* ==========================================================================
