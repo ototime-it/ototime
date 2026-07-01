@@ -142,7 +142,37 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+// --- Логіка акордеона для секції FAQ ---
+    const faqItems = document.querySelectorAll('.faq-item');
 
+    faqItems.forEach(item => {
+        const trigger = item.querySelector('.faq-trigger');
+        const answer = item.querySelector('.faq-answer');
+
+        if (trigger && answer) {
+            trigger.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Закриваємо інші відкриті запитання (ефект класичного акордеона)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        if (otherAnswer) otherAnswer.style.maxHeight = null;
+                    }
+                });
+
+                // Перемикаємо поточний елемент
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                } else {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = null;
+                }
+            });
+        }
+    });
     // Додатково: Скидання висоти акордеонів при перемиканні табів (щоб при поверненні вони були закриті)
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
