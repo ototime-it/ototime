@@ -547,6 +547,95 @@ a {
     font-size: 1.25rem;
     color: var(--primary);
 }
+/* ==========================================================================
+   ОНОВЛЕННЯ ДЛЯ АКОРДЕОНІВ У ПРАЙС-ЛИСТІ
+   ========================================================================== */
+.price-item {
+    display: flex;
+    flex-direction: column; /* Змінюємо на колону, щоб опис ставав під назвою */
+    padding: 0; /* Скидаємо паддінги, бо вони тепер у тригері */
+}
+
+.price-item-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.price-item-trigger:hover .p-name {
+    color: var(--secondary);
+}
+
+/* Налаштування для виділених послуг (highlight) */
+.price-item.highlight .price-item-trigger {
+    padding: 20px 40px;
+}
+
+/* Стилі для іконки стрілочки */
+.toggle-icon {
+    font-size: 0.85rem;
+    margin-right: 10px;
+    color: var(--text-light);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Стилі для прихованого опису */
+.p-description {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+    padding: 0;
+}
+
+.p-description p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    background-color: var(--bg-light);
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* Корекція для highlight блоку, щоб опис не вилазив за межі */
+.price-item.highlight .p-description p {
+    margin-left: 40px;
+    margin-right: 40px;
+    background-color: var(--white); /* Контраст на зеленому тлі */
+}
+
+/* Стан коли акордеон відкритий (активний) */
+.price-item.active .toggle-icon {
+    transform: rotate(180deg);
+    color: var(--primary);
+}
+
+.price-item.active .p-description {
+    max-height: 200px; /* Приблизна висота з запасом для анімації */
+}
+
+/* Адаптивність для мобільних телефонів */
+@media (max-width: 768px) {
+    .price-item-trigger {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .price-item.highlight .price-item-trigger {
+        padding: 15px 20px;
+    }
+    
+    .price-item.highlight .p-description p {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
 
 /* ==========================================================================
    10. КОНТАКТИ ТА ЗАПИС
