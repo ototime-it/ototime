@@ -1247,4 +1247,33 @@ a {
         font-size: 0.95rem;
     }
 }
+/* ==========================================================================
+   СТИЛІЗАЦІЯ БЕЗКОШТОВНОЇ ПОСЛУГИ СУРДОЛОГА
+   ========================================================================== */
+.price-item.bonus-item {
+    
+    background-color: rgba(16, 185, 129, 0.02);
+}
+
+.price-item.bonus-item .p-val {
+    color: #10B981; /* Робимо ціну "0 грн" зеленою */
+    font-weight: 700;
+}
+
+/* Стиль для плашки "Безкоштовно*" поруч із назвою */
+.tag-free {
+    background-color: #10B981 !important;
+    color: var(--white);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.price-item.bonus-item .p-description p strong {
+    color: #10B981;
+}
 }
