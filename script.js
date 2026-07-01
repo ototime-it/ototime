@@ -113,4 +113,44 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+	// --- Логіка акордеонів у прайс-листі ---
+    const priceItems = document.querySelectorAll('.price-item');
+
+    priceItems.forEach(item => {
+        const trigger = item.querySelector('.price-item-trigger');
+        const description = item.querySelector('.p-description');
+
+        if (trigger && description) {
+            trigger.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Опціонально: якщо хочете, щоб при відкритті однієї послуги інша автоматично закривалася в межах табу:
+                // const currentTab = item.closest('.tab-pane');
+                // currentTab.querySelectorAll('.price-item').forEach(i => {
+                //     i.classList.remove('active');
+                //     i.querySelector('.p-description').style.maxHeight = null;
+                // });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    // Динамічно вираховуємо висоту для ідеальної плавної анімації
+                    description.style.maxHeight = description.scrollHeight + 'px';
+                } else {
+                    item.classList.remove('active');
+                    description.style.maxHeight = null;
+                }
+            });
+        }
+    });
+
+    // Додатково: Скидання висоти акордеонів при перемиканні табів (щоб при поверненні вони були закриті)
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            priceItems.forEach(item => {
+                item.classList.remove('active');
+                const desc = item.querySelector('.p-description');
+                if(desc) desc.style.maxHeight = null;
+            });
+        });
+    });
 });
