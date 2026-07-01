@@ -1108,4 +1108,143 @@ a {
         border-radius: 24px; /* Трохи менший радіус для гармонії з мобільним екраном */
     }
 }
+/* ==========================================================================
+   СТИЛІЗАЦІЯ ЮРИДИЧНИХ ДОКУМЕНТІВ У ФУТЕРІ
+   ========================================================================== */
+.footer {
+    background-color: var(--text-dark);
+    padding: 30px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Перетворюємо футер на гнучкий рядок, де копірайт ліворуч, а документи праворуч */
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Дозволяє переносити елементи на мобільних */
+}
+
+.footer-inner p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* Контейнер для посилань */
+.footer-documents {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Стиль самих посилань */
+.footer-doc-link {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* Ефект при наведенні курсору */
+.footer-doc-link:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+/* Розділювальна риска між документами */
+.footer-doc-divider {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.85rem;
+    user-select: none;
+}
+
+/* Адаптивність для екранів смартфонів (плавний перехід в один стовпчик) */
+@media (max-width: 768px) {
+    .footer {
+        padding: 25px 0;
+    }
+    
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px; /* Створює акуратний відступ між копірайтом та документами */
+    }
+    
+    .footer-documents {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Ховаємо вертикальну риску на мобільних, бо посилання стануть одне під одним */
+    .footer-doc-divider {
+        display: none;
+    }
+    
+    .footer-doc-link {
+        font-size: 0.85rem;
+    }
+}
+/* ==========================================================================
+   БАНЕР ЗНИЖКИ ДЛЯ ВІЙСЬКОВИХ У РОЗДІЛІ ПОСЛУГ
+   ========================================================================== */
+.military-discount-banner {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #1e3a2f 0%, #014AAD 100%); /* Благородний мікс мілітарі-зеленого та вашого фірмового синього */
+    color: var(--white);
+    padding: 20px 30px;
+    border-radius: 16px;
+    margin: -10px auto 40px auto;
+    max-width: 900px;
+    box-shadow: 0 10px 20px rgba(1, 74, 173, 0.15);
+    border-left: 5px solid #36B5FE; /* Яскравий акцентний бортик */
+}
+
+.mdb-icon {
+    font-size: 2rem;
+    margin-right: 25px;
+    color: #36B5FE; /* Блакитний колір для іконки щита */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse-shield 2s infinite alternate;
+}
+
+.mdb-text {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.mdb-text strong {
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Легка пульсація для іконки, щоб привернути увагу */
+@keyframes pulse-shield {
+    0% { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(1.08); opacity: 1; }
+}
+
+/* Адаптивність для смартфонів */
+@media (max-width: 768px) {
+    .military-discount-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .mdb-icon {
+        margin-right: 0;
+        margin-bottom: 12px;
+        font-size: 2.2rem;
+    }
+    
+    .mdb-text {
+        font-size: 0.95rem;
+    }
+}
 }
